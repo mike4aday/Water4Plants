@@ -6,11 +6,10 @@ public with sharing class Water4PlantsController {
 
     @AuraEnabled(cacheable=true)
     public static List<Plant__c> getThirstyPlants(Id rootLocationId) {
+        // Return thirsty plants whose root location matches 'rootLocationId'
+        // Note: For production app, implement pagination and handle security exceptions gracefully
         List<Plant__c> plants;
         if (rootLocationId != NULL) {
-            // Return all thirsty plants whose root location matches the argument 'rootLocationId'
-            // TODO: Implement pagination for a real-world app
-            // TODO: Handle security exceptions gracefully
             plants = [
                 SELECT Id, Name, Nickname__c, Kind__c, Last_Watering__c, Watering_Period__c, Location__r.Name 
                 FROM Plant__c 
@@ -19,9 +18,6 @@ public with sharing class Water4PlantsController {
             ];
         }
         else {
-            // Return all thirsty plants
-            // TODO: Implement pagination for a real-world app
-            // TODO: Handle security exceptions gracefully
             plants = [
                 SELECT Id, Name, Nickname__c, Kind__c, Last_Watering__c, Watering_Period__c, Location__r.Name 
                 FROM Plant__c 
